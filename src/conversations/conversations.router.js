@@ -14,6 +14,11 @@ router.route('/:conversation_id')
     .delete(passportJWT.authenticate('jwt', {session: false}), conversationServices.deleteConversation)
 
 router.route('/:conversation_id/messages')
-    .post(passportJWT.authenticate('jwt', {session: false}), participantValidate, messageServices.postMessage);
+    .get(passportJWT.authenticate('jwt', {session: false}), participantValidate, messageServices.getAllMessages)
+    .post(passportJWT.authenticate('jwt', {session: false}), participantValidate, messageServices.postMessage)
+
+router.route('/:conversation_id/messages/:message_id')
+    .get(passportJWT.authenticate('jwt', {session: false}), participantValidate, messageServices.getMessageById)
+    .delete(passportJWT.authenticate('jwt', {session: false}), participantValidate, messageServices.deleteMessage)
 
 module.exports = router

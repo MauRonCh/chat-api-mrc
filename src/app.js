@@ -36,7 +36,8 @@ app.get('/', (req, res) => {
         status: 200,
         message: 'Ok!',
         routes: {
-            users: ""
+            users: "/api/v1/users",
+            auth: "/api/v1/auth/login"
         }
     })
 })

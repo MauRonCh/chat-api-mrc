@@ -11,9 +11,9 @@ function getAllConversations(req, res) {
 }
 
 function postConversation(req, res) {
-    const { title, imgUrl, participantUrl } = req.body;
+    const { title, imgUrl, participantId } = req.body;
     const ownerId = req.user.id
-    conversationController.createConversation({ title, imgUrl, participantUrl, ownerId })
+    conversationController.createConversation({ title, imgUrl, participantId, ownerId })
         .then((data) => {
             res.status(201).json(data);
         })

@@ -1,6 +1,20 @@
 const Messages = require('../models/messages.models')
 const uuid = require('uuid')
 
+async function findAllMessages() {
+    const data = await Messages.findAll();
+    return data;
+}
+
+async function findMessageById(id) {
+    const data = await Messages.findOne({
+        where: {
+            id: id
+        }
+    });
+    return data;
+}
+
 async function createMessage(obj) {
     const data = await Messages.create({
         id: uuid.v4(),
@@ -11,8 +25,18 @@ async function createMessage(obj) {
     return data
 }
 
-
+async function removeMessage(id) {
+    const data = await Messages.destroy({
+        where: {
+            id: id
+        }
+    })
+    return data;
+}
 
 module.exports = {
-    createMessage
+    findAllMessages,
+    findMessageById,
+    createMessage,
+    removeMessage
 }
